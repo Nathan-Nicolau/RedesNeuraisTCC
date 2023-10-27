@@ -9,7 +9,7 @@ classFolder = 'C:\\Users\\Gamer\\Documents\\Datasets\\Cromossomos\\Data\\Classes
 
 contador = 0
 for xmlFile in os.listdir(path=xmlFolder):
-    contador = 1
+    contador = contador + 1
     print(contador, '-', xmlFile)
 
     imgFile = xmlFile.replace('.xml', '.jpg')
@@ -52,6 +52,3 @@ for xmlFile in os.listdir(path=xmlFolder):
 
         if contadorPares == 2:
             contadorPares = 0
-
-    if contador == 1001:
-        break
