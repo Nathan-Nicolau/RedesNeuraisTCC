@@ -38,6 +38,15 @@ for xmlFile in os.listdir(path=xmlFolder):
         yMin = int(bndBox.find('ymin').text)
         yMax = int(bndBox.find('ymax').text)
 
+        if xMin < 0:
+            xMin = 0
+        elif xMax < 0:
+            xMax = 0
+        elif yMax < 0:
+            yMax = 0
+        elif yMin < 0:
+            yMin = 0
+
         # recorte da  Imagem original
         imagemCrop = image[yMin:yMax, xMin:xMax]
 
@@ -52,3 +61,6 @@ for xmlFile in os.listdir(path=xmlFolder):
 
         if contadorPares == 2:
             contadorPares = 0
+
+    if contador == 1001:
+        break
