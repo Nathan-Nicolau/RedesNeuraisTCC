@@ -1,14 +1,20 @@
 import os
 import cv2
+from PIL import Image
+
+caminhoImagens = 'C:\\Users\\Gamer\\Documents\\Datasets\\Cromossomos\\Data\\Classes\\'
+caminhoRedimensionadas = 'C:\\Users\\Gamer\\Documents\\Datasets\\Redimensionadas\\'
+# Vetor que armazena todas as classes de cromossomos identificados
+vetorClasses = ['A1', 'A2', 'A3', 'B4', 'B5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11',
+                'C12', 'D13', 'D14', 'D15', 'E16', 'E17', 'E18', 'F19', 'F20', 'G21', 'G22', 'X', 'Y']
+
+vetorTotal = [0]*24
+vetorQuantidadeImagens = [0]*24
+vetorTamanhos = [0]*1
 
 
 def realizarContagemImagens():
-    caminhoImagens = 'C:\\Users\\Gamer\\Documents\\Datasets\\Cromossomos\\Data\\Classes\\'
-    # Vetor que armazena todas as classes de cromossomos identificados
-    vetorClasses = ['A1', 'A2', 'A3', 'B4', 'B5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11',
-                    'C12', 'D13', 'D14', 'D15', 'E16', 'E17', 'E18', 'F19', 'F20', 'G21', 'G22', 'X', 'Y']
 
-    vetorQuantidadeImagens = [0]*24
     contadorImagensClasse = 0
     contadorAuxiliar = 0
 
@@ -22,22 +28,65 @@ def realizarContagemImagens():
         contadorImagensClasse = 0
         contadorAuxiliar += 1
 
-    print(vetorQuantidadeImagens)
-    print(' ')
+    # print(vetorQuantidadeImagens)
+    # print(' ')
 
     contador = 0
     for i in vetorClasses:
         for j in vetorQuantidadeImagens:
             if contador == 24:
                 break
-        print('Classe ' + str(i) + ' tem: ' +
-              str(vetorQuantidadeImagens[contador]) + ' imagens')
+        # print('Classe ' + str(i) + ' tem: ' +
+              # str(vetorQuantidadeImagens[contador]) + ' imagens')
         contador += 1
 
 
-def redimensionarImagens():
-    vetorImagens = []
+def lerImagensClasse(classe='', tamanho=0):
+    contador = 0
+    contadorAuxiliar = 0
+    maior = 0
+    nome = ''
+    largura = 0
+    altura = 0
+    path = str(caminhoImagens + '\\' + classe + '\\')
+
+    for arquivo in os.listdir(path=path):
+        if contador == tamanho:
+            break
+        img = Image.open(path + arquivo)
+        valorTamanho = img.width + img.height
+
+        if valorTamanho > maior:
+            maior = valorTamanho
+            nome = arquivo
+            largura = img.width
+            altura = img.height
+
+        vetorTamanhos[0] = 'Imagem ' + \
+            str(nome) + ' tem o maior tamanho, com ' + str(largura) + \
+            ' de largura e ' + str(altura) + ' de altura.'
+        contador += 1
+    print(vetorTamanhos)
+
+
+def redimensionarImagens(caminho=''):
+    img = Image.open(caminho)
+    width = img.width + 100
+    height = img.height + 100
+    img_resized = img.resize((width, height))
+    Image._show(img)
+    img_resized.save(caminhoRedimensionadas + 'Imagem1.jpg')
 
 
 if __name__ == '__main__':
     realizarContagemImagens()
+
+#    contador = 0
+#    for i in vetorClasses:
+#        for j in vetorQuantidadeImagens:
+#            if contador == 24:
+#                break
+#            lerImagensClasse(i, j)
+#        contador += 1
+
+lerImagensClasse('Y', 2564)
