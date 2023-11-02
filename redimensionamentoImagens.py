@@ -10,7 +10,7 @@ vetorClasses = ['A1', 'A2', 'A3', 'B4', 'B5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C1
 
 vetorTotal = [0]*24
 vetorQuantidadeImagens = [0]*24
-vetorTamanhos = [0]*1
+vetorTamanhos = [0]*24
 
 
 def realizarContagemImagens():
@@ -36,8 +36,8 @@ def realizarContagemImagens():
         for j in vetorQuantidadeImagens:
             if contador == 24:
                 break
-        # print('Classe ' + str(i) + ' tem: ' +
-              # str(vetorQuantidadeImagens[contador]) + ' imagens')
+        print('Classe ' + str(i) + ' tem: ' +
+              str(vetorQuantidadeImagens[contador]) + ' imagens')
         contador += 1
 
 
@@ -49,6 +49,7 @@ def lerImagensClasse(classe='', tamanho=0):
     largura = 0
     altura = 0
     path = str(caminhoImagens + '\\' + classe + '\\')
+    vetorAuxiliar = [0]*1
 
     for arquivo in os.listdir(path=path):
         if contador == tamanho:
@@ -62,11 +63,11 @@ def lerImagensClasse(classe='', tamanho=0):
             largura = img.width
             altura = img.height
 
-        vetorTamanhos[0] = 'Imagem ' + \
-            str(nome) + ' tem o maior tamanho, com ' + str(largura) + \
-            ' de largura e ' + str(altura) + ' de altura.'
+        vetorAuxiliar[0] = 'Imagem ' + \
+            str(nome) + ' Largura ' + str(largura) + \
+            ' Altura: ' + str(altura)
         contador += 1
-    print(vetorTamanhos)
+    return vetorAuxiliar
 
 
 def redimensionarImagens(caminho=''):
@@ -80,13 +81,10 @@ def redimensionarImagens(caminho=''):
 
 if __name__ == '__main__':
     realizarContagemImagens()
-
-#    contador = 0
-#    for i in vetorClasses:
-#        for j in vetorQuantidadeImagens:
-#            if contador == 24:
-#                break
-#            lerImagensClasse(i, j)
-#        contador += 1
-
-lerImagensClasse('Y', 2564)
+    contador = 0
+    for i in vetorClasses:
+        for j in vetorQuantidadeImagens:
+            if contador == 24:
+                break
+            vetorTotal[contador] == lerImagensClasse(i, j)
+        contador += 1
