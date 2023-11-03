@@ -4,7 +4,7 @@ from PIL import Image
 
 caminhoImagens = 'C:\\Users\\Gamer\\Documents\\Datasets\\Cromossomos\\Data\\Classes\\'
 caminhoRedimensionadasMaior = 'C:\\Users\\Gamer\\Documents\\Datasets\\CromossomosAjustados_317_x_212\\'
-caminhoRedimensionadasMenor = 'C:\\Users\\Gamer\\Documents\\Datasets\\CromossososAjustados_65_x_52\\'
+caminhoRedimensionadasMenor = 'C:\\Users\\Gamer\\Documents\\Datasets\\CromossososAjustados_52_x_52\\'
 
 # Vetor que armazena todas as classes de cromossomos identificados
 vetorClasses = ['A1', 'A2', 'A3', 'B4', 'B5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11',
@@ -12,7 +12,7 @@ vetorClasses = ['A1', 'A2', 'A3', 'B4', 'B5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C1
 
 
 tamanhoMaximoRedimensionamento = [317, 212]
-tamanhoMinimoRedimensionamento = [65, 52]
+tamanhoMinimoRedimensionamento = [100, 100]
 
 vetorTotal = [0]*24
 vetorQuantidadeImagens = [0]*24
@@ -90,13 +90,9 @@ if __name__ == '__main__':
     #    redimensionarImagensMaior(caminhoImagens, i)
     #    contador += 1
     #
-    # contador = 0
-    # for i in vetorClasses:
-    #    if contador == 24:
-    #        break
-    #    redimensionarImagensMenor(caminhoImagens, i)
-    #    contador += 1
-    valor = 9999 * 0.1
-    valor % 100
-
-    print(valor)
+    contador = 0
+    for i in vetorClasses:
+        if contador == 24:
+            break
+        redimensionarImagensMenor(caminhoImagens, i)
+        contador += 1
